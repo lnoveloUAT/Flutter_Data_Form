@@ -13,7 +13,9 @@ class _HomeMaterialState extends State<HomeMaterial> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('Profile')),
+        appBar: AppBar(
+          title: Text('Profile'),
+        ),
         body: SingleChildScrollView(
           child: Container(
             padding:
