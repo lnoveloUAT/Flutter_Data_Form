@@ -5,6 +5,7 @@ class User {
 
   String firstName = '';
   String lastName = '';
+  String testis = '';
   Map<String, bool> passions = {
     PassionCooking: false,
     PassionHiking: false,

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../models/user.dart';
+import 'package:intl/intl.dart';
+import 'package:flutter_firestore/datetime_picker_formfield.dart';
 
 class HomeMaterial extends StatefulWidget {
   @override
@@ -9,7 +11,7 @@ class HomeMaterial extends StatefulWidget {
 class _HomeMaterialState extends State<HomeMaterial> {
   final _formKey = GlobalKey<FormState>();
   final _user = User();
-
+  final format = DateFormat("yyyy-MM-dd");
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -54,6 +56,20 @@ class _HomeMaterialState extends State<HomeMaterial> {
                         value: _user.newsletter,
                         onChanged: (bool val) =>
                             setState(() => _user.newsletter = val)),
+                    Column(children: <Widget>[
+                      Text('Basic date field (${format.pattern})'),
+                      DateTimeField(
+                        format: format,
+                        onShowPicker: (context, currentValue) {
+                          return showDatePicker(
+                              context: context,
+                              firstDate: DateTime(1900),
+                              initialDate: currentValue ?? DateTime.now(),
+                              lastDate: DateTime(2100));
+                        },
+                        onSaved: (key) => setState(() => _user.testis = key.toString())
+                      ),
+                    ]),
                     Container(
                       padding: const EdgeInsets.fromLTRB(0, 50, 0, 20),
                       child: Text('Interests'),
